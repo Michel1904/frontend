@@ -2,8 +2,11 @@ FROM python:3.12
 
 WORKDIR /app
 
-COPY ./frontend /app
+# Copier tous les fichiers dans /app
+COPY . /app
 
+# Installer les dépendances
 RUN pip install --no-cache-dir -r streamlit_requirements.txt
 
-CMD ["streamlit", "run", "streamlit_app.py"]
+# Lancer l'application Streamlit
+CMD ["streamlit", "run", "streamlit_app.py", "--server.port=80", "--server.enableCORS=false"]
