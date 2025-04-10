@@ -52,7 +52,7 @@ input_data['anemie'] = 1 if st.radio("Anémie", ["Non", "Oui"], key="anemie_fina
 # Bouton de prédiction
 if st.button("Prédire le Stade de l'IRC"):
     try:
-        response = requests.post("http://backend:8000/predict", json=input_data)
+        response = requests.post("https://backend-ta25.onrender.com/predict", json=input_data)
         result = response.json().get("result", "Erreur dans la réponse du modèle.")
         st.success(result)
     except Exception as e:
