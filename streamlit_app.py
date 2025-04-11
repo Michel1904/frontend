@@ -97,7 +97,10 @@ st.markdown("## 🎯 Résultat de la prédiction")
 if st.button("🔍 Prédire le Stade de l'IRC"):
     try:
         response = requests.post("https://backend-ta25.onrender.com/predict", json=input_data)
-        result = response.json().get("result", "Erreur dans la réponse du modèle.")
+        data = response.json()
+        result = data.get("result", "Erreur dans la réponse du modèle.")
+        conseil = data.get("conseil", "Pas de conseil reçu.")
         st.success(f"✅ {result}")
+        st.info(f"💡 Conseil : {conseil}")
     except Exception as e:
         st.error(f"❌ Erreur lors de la requête : {e}")
